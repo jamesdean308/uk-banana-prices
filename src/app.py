@@ -1,26 +1,21 @@
-from datetime import date
+import datetime as dt
 import dash
 import dash_core_components as dcc
 import dash_html_components as html
 import inflection
-import logging
 import numpy as np
+import pandas as pd
 import pandera as pa
 from typing import Dict
-
-import banana
-
-
-# NOTE logging used in banana.
-# logging.basicConfig(level=logging.INFO)
 
 
 # Load, validate, sort data pipeline.
 df = (
-    banana.get_banana_df(
-        "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/1045165/",
-        banana.get_file_name(banana.get_last_weekday_date(date.today())),
-        "data/bananas-1nov21.csv",
+    pd.read_csv(
+        "data/bananas-1nov21.csv",  # Load local data.
+        encoding="unicode_escape",
+        parse_dates=["Date"],
+        date_parser=lambda x: dt.datetime.strptime(x, "%d/%m/%Y"),
     )
     .pipe(
         pa.DataFrameSchema(
