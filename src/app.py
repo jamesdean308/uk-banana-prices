@@ -1,22 +1,16 @@
-import datetime as dt
 import dash
 import dash_core_components as dcc
 import dash_html_components as html
 import inflection
 import numpy as np
-import pandas as pd
 import pandera as pa
 from typing import Dict
 
+import banana
 
 # Load, validate, sort data pipeline.
 df = (
-    pd.read_csv(
-        "data/bananas-1nov21.csv",  # Load local data.
-        encoding="unicode_escape",
-        parse_dates=["Date"],
-        date_parser=lambda x: dt.datetime.strptime(x, "%d/%m/%Y"),
-    )
+    banana.get_df()
     .pipe(
         pa.DataFrameSchema(
             {
