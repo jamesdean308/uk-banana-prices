@@ -3,4 +3,4 @@ Have you ever found yourself wanting to visualise the average wholesale prices o
 
 This application will load the freshest available banana data straight from gov.uk and allow you to filter by *country of origin* and *date*.
 
-Simply install `requirements.txt` in the environment of your choice, and run `python .\src\app.py`. By default you should be able to visit the Dash app at `http://127.0.0.1:8050/`.
+Install `requirements.txt` in the environment of your choice, and run `python .\src\app.py`. By default you should be able to visit the Dash app at `http://127.0.0.1:8050/`.
